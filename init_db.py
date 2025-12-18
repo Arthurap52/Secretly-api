@@ -7,7 +7,6 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from app.db.sessions import engine
 from app.db.base import Base
 from app.core.config import settings
-# Importa os modelos para registrar metadados no Base
 from app.models import group, participant, draw  # noqa: F401
 
 def init_db():
