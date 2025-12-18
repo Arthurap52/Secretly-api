@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: secretly_api
+    volumes:
+      - db_data:/app/data
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./data/secretly.db
+      - ENVIRONMENT=production
+    restart: unless-stopped
+
+volumes:
+  db_data:
+

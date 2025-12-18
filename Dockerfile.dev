@@ -1,0 +1,24 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install --no-cache-dir watchdog
+
+COPY . .
+
+COPY entrypoint.dev.sh /entrypoint.dev.sh
+
+RUN sed -i 's/\r$//' /entrypoint.dev.sh && chmod +x /entrypoint.dev.sh
+
+EXPOSE 8000
+
+ENTRYPOINT ["/entrypoint.dev.sh"]
+
+
