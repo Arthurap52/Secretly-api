@@ -10,6 +10,7 @@ class Settings(BaseSettings):
         "DATABASE_URL",
         "sqlite:///./secretly.db"
     )
+    enable_docs: bool = False
 
     class Config:
         env_file = ".env"

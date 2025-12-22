@@ -1,8 +1,13 @@
 from fastapi import FastAPI
 from app.api.v1 import groups, participants, draws
+from app.core.config import settings
+
+is_docs_enabled = "/docs" if settings.enable_docs else None
 
 app = FastAPI(
     title="Secretly API",
+    docs_url=is_docs_enabled,
+    redoc_url=None,
     description="API simples para gerenciamento de amigo secreto",
     version="1.0.0"
 )
